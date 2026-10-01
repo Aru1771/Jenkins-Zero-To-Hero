@@ -218,3 +218,33 @@ So we'll have:
                   Deployment ❌
                         ↓
                   Pipeline ❌
+
+
+Fail happen
+------------
+
+        stage('Testing') {
+                    parallel {
+                        stage('unit test') {
+                            steps {
+                                echo "Unit Testing...."
+                                sleep 10
+                                echo "Unit Test Completed"
+                            }
+                        }
+                        stage('SonarQubeAnalisys') {
+                            steps {
+                                echo "SonarQubeAnalisys....."
+                                sleep 10
+                                echo "SQ Analisys Completed"
+                            }
+                        }
+                        stage('Trivy scan') {
+                            steps{
+                                echo "Trivy scanning...."
+                                sleep 10
+                                error "Trivy Scan failed"
+                            }
+                        }
+                    }
+                }
