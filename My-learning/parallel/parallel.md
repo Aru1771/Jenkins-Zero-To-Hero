@@ -190,3 +190,31 @@ Once you run it, look at the Jenkins Stage View and verify that:
 appear as parallel branches under Testing.
 
 Write the complete Jenkinsfile yourself and send it to me. I'll review it before we move to the next parallel exercise.
+
+
+Parallel failure
+----------------
+
+Change only the Trivy branch:
+        
+        stage('Trivy scan') {
+            steps {
+                echo 'Trivy scanning....'
+                sleep 5
+                error 'Trivy found a critical vulnerability'
+            }
+        }
+
+Keep Unit Test and SonarQube successful.
+
+So we'll have:
+
+        Unit Test       ✅
+        SonarQube       ✅
+        Trivy           ❌
+                        ↓
+                  Parallel block ❌
+                        ↓
+                  Deployment ❌
+                        ↓
+                  Pipeline ❌
