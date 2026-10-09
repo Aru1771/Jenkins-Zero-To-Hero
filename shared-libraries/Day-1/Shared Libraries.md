@@ -346,3 +346,107 @@ Make hello.groovy print:
 Then create a Jenkinsfile that loads the library and calls:
 
     hello()
+
+
+1. Understand the execution flow
+---------------------------------
+Imagine your team has a reusable function called buildApp.
+        
+        Application Jenkinsfile
+        
+        Calls buildApp('Empower')
+                 |
+                 
+        Jenkins Shared Library
+        
+        vars/buildApp.groovy
+                 |
+                 
+        Reusable pipeline logic executes
+        
+        Prints the application name, builds, or performs other configured steps.
+
+The Jenkinsfile calls the function. Jenkins loads the library, finds the matching file under vars/, and executes its code.
+
+
+What is call()?
+---------------
+
+Consider this file:
+
+ vars/buildApp.groovy
+
+        def call(String appName) {
+        echo "Building application: ${appName}"
+    }
+
+The call() method makes the library step callable by its filename.
+
+
+Because the filename is buildApp.groovy, you can call it like this:
+
+    buildApp('Empower')
+
+Output:
+
+    Building application: Empower
+
+You don't need to write buildApp.call('Empower') in your Jenkinsfile. Jenkins/Groovy lets you invoke the step using the shorter syntax.
+
+
+Passing multiple values
+------------------------
+
+In real projects, you usually need the application name, version, and target environment.
+
+vars/buildApp.groovy
+
+    def call(Map config) {
+        echo "Application: ${config.appName}"
+        echo "Version: ${config.version}"
+        echo "Environment: ${config.environment}"
+    }
+
+
+Call it from the Jenkinsfile:
+
+    buildApp(
+        appName: 'Empower',
+        version: '1.2.0',
+        environment: 'dev'
+    )
+
+Expected output:
+
+    Application: Empower
+    Version: 1.2.0
+    Environment: dev
+
+Why use Map config? You can pass multiple named values without creating a separate method parameter for every value. It also makes the function easier to extend later.
+
+One important distinction: this example explains the library function itself. To execute it in Jenkins, the Shared Library must also be stored in a repository and configured or loaded by Jenkins.
+
+Today's practice — Shared Libraries only
+-----------------------------------------
+
+Create a file named vars/deployApp.groovy.
+
+Your function must:
+
+Accept a Map config.
+
+Print the application name.
+
+Print the version.
+
+Print the target environment.
+
+Print a deployment message using all three values.
+
+Then show me how you would call it with:
+
+Application: Empower
+
+Version: 2.0.0
+
+Environment: stage
