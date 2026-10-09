@@ -1,0 +1,53 @@
+      pipeline {
+          agent any
+          
+          stages {
+              stage('Build') {
+                  steps {
+                      echo "Building Successful..."
+                  }
+              }
+              stage('Testing') {
+                  parallel {
+                      stage('unit test') {
+                          steps {
+                              echo "Unit Testing...."
+                              sleep 10
+                              echo "Unit Test Completed"
+                          }
+                      }
+                      stage('SonarQubeAnalisys') {
+                          steps {
+                              echo "SonarQubeAnalisys....."
+                              sleep 10
+                              echo "SQ Analisys Completed"
+                          }
+                      }
+                      stage('Trivy scan') {
+                          steps{
+                              echo "Trivy scanning...."
+                              sleep 10
+                              echo "Trivy Scan Completed"
+                          }
+                      }
+                  }
+              }
+              stage('Deployment') {
+                  steps{
+                      echo "Deployment successfull.."
+                  }
+              }
+          }
+          post {
+              always {
+                  echo "this is my parrllel pipeline"
+              }
+              success{
+                  echo "this pipeline is successfull"
+              }
+              failure {
+                  echo "this pipline is failed to some issue"
+              }
+          }
+          
+      }
