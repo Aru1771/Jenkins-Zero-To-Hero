@@ -34,7 +34,7 @@
               }
               stage('Deployment') {
                   steps{
-                      echo "Deployment successfull.."
+                      echo "Deployment successfull...."
                   }
               }
           }
