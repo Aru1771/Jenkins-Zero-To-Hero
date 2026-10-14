@@ -1,0 +1,11 @@
+Stage / concept	Your requirement
+Parameters	APP_VERSION, DEPLOY_ENV (dev, stage, prod), and DEPLOY (boolean)
+Environment	APP_NAME = Empower, DOCKER_IMAGE = Aru1771/Empower3_FR4
+Build	Print the application name, version, and Docker image tag
+Matrix	Test versions 1.0 and 2.0 across dev and stage — four combinations
+Parallel	Run Unit Tests, SonarQube, and Trivy Scan concurrently
+when	Run deployment only if DEPLOY is true and the selected environment is dev or stage
+input + timeout	Require human approval for production, with a 2-minute timeout
+retry	Retry the simulated deployment operation up to three attempts
+post	Handle success, failure, always, and cleanup outcomes
+
