@@ -152,6 +152,11 @@ Validation Flow:
         trim()	    --->         Removes leading and trailing whitespace.
         error(...)   --->	Stops the Jenkins pipeline with a failure message.
 
+Remember one thing: 
+
+        In jenkins "Empty string"  and "null value" consider as False. so to execute the error block we change thet false value to true by using (!) 
+
+
 4. Default values vs validation
 ----------------------------------
 
