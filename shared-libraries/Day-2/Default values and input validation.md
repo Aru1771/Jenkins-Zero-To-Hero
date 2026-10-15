@@ -170,3 +170,51 @@ Remember one thing:
         Production approval	            Require explicit human approval; never replace it with a default
 
 
+Task:
+
+Shared_Lib_file:
+
+
+        def call(Map config) {
+        
+             // validating the app_name
+             
+            if (!config.app_name?.toString()?.trim()) {
+                error("Application Name is required")
+            }
+        
+          
+             // declareing the local varibles
+            def app_name = config.app_name?.toString()?.trim() 
+             // setting up default value to optional field
+            def app_version = config.app_version ?.toString() ?.trim() ?: '1.0.0'
+            def env = config.env
+
+Jenkinsfile:
+
+        @Library('my-shared-library') _
+
+        pipeline {
+            agent any
+        
+            stages{
+        
+                stage('Test shared Lib'){
+        
+                    steps{
+        
+                        deployapp(
+                            app_name: ' ',
+                            app_version: '',
+                            env: 'stage'
+                        )
+                    }
+                }
+            }
+        }
+        
+
+    echo "Application Name is ${app_name}"
+    echo "Application Version is ${app_version}"
+    echo "Environment is ${env}"
+}
