@@ -1,12 +1,12 @@
 def call(Map config) {
 
-    if (!config.app_name ?.tostring()?.trim()) {
+    if (!config.app_name?.toString()?.trim()) {
         error: "Application Name is required"
     }
   
 
     
-    def app_version = config.app_version ?.tostring() ?.trim() ?: '1.0.0'
+    def app_version = config.app_version ?.toString() ?.trim() ?: '1.0.0'
 
 
     echo "Application Name is ${app_name}"
