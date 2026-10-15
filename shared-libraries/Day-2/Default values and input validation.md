@@ -44,6 +44,12 @@ Your function may print:
             echo "Environment: ${environment}"
         }
 
+There are three concepts here:
+
+        - def — declares a local variable in Groovy.
+        - config.appName — reads the appName value from the config object, typically a map.
+        - ?: — the Groovy Elvis operator, which uses a default value when the left side is false-like.
+
 Let's break it down:
 
         - Map config — receives the map passed by the Jenkinsfile.
@@ -113,6 +119,8 @@ Important: Defaults are useful for optional values, but you shouldn't silently d
             echo "Version: ${config.version}"
             echo "Environment: ${config.environment}"
         }
+
+
 
 Here:
 
