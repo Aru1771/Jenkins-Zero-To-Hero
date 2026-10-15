@@ -10,9 +10,9 @@ pipeline {
             steps{
 
                 deployapp(
-                    app_name: '',
+                    app_name: ' ',
                     app_version: '',
-                    env: ''
+                    env: 'stage'
                 )
             }
         }
