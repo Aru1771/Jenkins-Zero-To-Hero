@@ -48,7 +48,7 @@ There are three concepts here:
 
         - def — declares a local variable in Groovy.
         - config.appName — reads the appName value from the config object, typically a map.
-        - ?: — the Groovy Elvis operator, which uses a default value when the left side is false-like.
+        - ?: — the Groovy Elvis operator, which uses a default value when the left side is false-like. It helps you set fallback values without writing a full if-else statement.
 
 Let's break it down:
 
