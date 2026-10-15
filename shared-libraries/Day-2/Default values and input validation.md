@@ -142,6 +142,16 @@ Here:
 
 * This prevents the function from continuing with invalid configuration.
 
+Validation Flow:
+
+
+        if (...)    --->        Checks whether a condition is true.
+        !           --->	is called the logical NOT operator. It reverses a Boolean result: true becomes false, and false becomes true.
+        ?.          --->  	Safely skips a method call when the value is null.
+        toString()  --->	Converts the value into a string.
+        trim()	    --->         Removes leading and trailing whitespace.
+        error(...)   --->	Stops the Jenkins pipeline with a failure message.
+
 4. Default values vs validation
 ----------------------------------
 
@@ -153,4 +163,5 @@ Here:
         Application version	Usually     validate
         Deployment environment	        Validate against allowed values
         Production approval	            Require explicit human approval; never replace it with a default
+
 
