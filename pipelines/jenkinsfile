@@ -11,7 +11,7 @@ pipeline {
 
                 deployapp(
                     app_name: 'Empower',
-                    app_version: '2.0.0',
+                    app_version: ,
                     env: 'stage'
                 )
             }
