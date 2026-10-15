@@ -97,6 +97,18 @@ What if you don't use config?
 
 Important: Defaults are useful for optional values, but you shouldn't silently deploy to an unintended environment just because a parameter is missing.
 
+
+What if the given vale is empty spaces:
+
+        Operator/function	Purpose
+        ----------------        ---------
+        ?.	                Skips the method call if the value is null.
+        toString()	        Converts a non-null value to a string.
+        trim()	                Removes leading and trailing whitespace.
+        ?:	                Returns the default if the processed value is false-like.
+
+
+
 3. Validate required values
 -----------------------------
 
