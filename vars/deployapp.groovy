@@ -1,7 +1,15 @@
 def call(Map config) {
-    def app_name = config.app_name ?: 'unkown-application'
-    def app_version = config.app_version ?: '1.0.0'
-    def env = config.env ?: 'prod'
+
+    if (!config.app_name) {
+        error: "Application Name is required"
+    }
+    if (!config.app_version) {
+        error: "Application version is required"
+    }
+    if (!config.env) {
+        error: "Environment is nor declared"
+    }
+
 
     echo "Application Name is ${app_name}"
     echo "Application Version is ${app_version}"
