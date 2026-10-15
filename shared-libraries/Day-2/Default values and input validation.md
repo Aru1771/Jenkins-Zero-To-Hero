@@ -44,6 +44,49 @@ Your function may print:
             echo "Environment: ${environment}"
         }
 
+Let's break it down:
+
+        - Map config — receives the map passed by the Jenkinsfile.
+        - config.appName — reads the appName entry from that map.
+        - config.version — reads the version entry.
+        - config.environment — reads the environment entry.
+
+How the values travel
+
+        Jenkinsfile
+        appName: 'Empower'
+        version: '3.8.0'
+        environment: 'prod'
+        
+        Shared Library
+        def call(Map config)
+        Receives the three entries in config
+        
+        Access the values
+        config.appName → Empower
+        config.version → 3.8.0
+        config.environment → prod
+
+What if you don't use config?
+
+        You could write a function with individual parameters, but then the call and function definition would be different:
+
+        def deployapp(String appName, String version) {
+            echo "Deploying ${appName} version ${version}"
+        }
+
+
+        Call it like this:
+        deployapp('Empower', '3.8.0')
+
+
+* Using Map config is convenient when your deployment needs many optional settings, because you can pass named values.
+* Remember: config is not a special Jenkins keyword. It's just a variable name chosen by the developer. You could call it settings instead:
+
+        def call(Map settings) {
+            echo settings.appName
+        }
+
 * For example, if the version is missing, the function uses 1.0.0.
 
 Important: Defaults are useful for optional values, but you shouldn't silently deploy to an unintended environment just because a parameter is missing.
