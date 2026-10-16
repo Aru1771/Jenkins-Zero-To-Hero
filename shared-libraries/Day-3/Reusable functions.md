@@ -1,5 +1,3 @@
-<img width="1006" height="717" alt="image" src="https://github.com/user-attachments/assets/1a80146d-74eb-41e1-9679-ccac8f141148" />Reusable functions and organizing pipeline logic
-================================================
 
 Yesterday, you completed default values, null handling, and input validation. 
 Today, we'll learn how to split common CI/CD operations into reusable Shared Library functions, like a DevOps engineer would in a real project.
