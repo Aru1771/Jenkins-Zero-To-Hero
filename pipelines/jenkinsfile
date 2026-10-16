@@ -10,9 +10,20 @@ pipeline {
             steps{
 
                 deployapp(
-                    app_name: ' ',
-                    app_version: '',
+                    app_name: 'Empower',
+                    app_version: '2.0',
                     env: 'stage'
+                )
+            }
+        }
+
+    }
+    stages{
+        stage('Test Unit test') {
+            steps{
+                runTests(
+                    app_name: "Nugenesis",
+                    testType: ""
                 )
             }
         }
