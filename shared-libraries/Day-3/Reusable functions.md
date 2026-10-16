@@ -1,4 +1,4 @@
-Reusable functions and organizing pipeline logic
+<img width="1006" height="717" alt="image" src="https://github.com/user-attachments/assets/1a80146d-74eb-41e1-9679-ccac8f141148" />Reusable functions and organizing pipeline logic
 ================================================
 
 Yesterday, you completed default values, null handling, and input validation. 
@@ -187,3 +187,61 @@ Daily practice reminder: Your separate Advanced Pipeline Syntax real-world task 
 
 deployApp()
 Deployment logic
+
+
+
+TASK:
+
+runTests.groovy
+
+      def call(Map test) {
+          def app_name = test.app_name?.toString()?.trim()
+          def test_type = test.test_type?.toString()?.trim() ?: 'unit'
+      
+          if (!app_name) {
+              error 'Application name is required'
+          }
+      
+          echo "Application is testing: ${app_name}"
+          echo "test type is: ${test_type}"
+      }
+      
+
+
+Pipeline:
+
+            @Library('my-shared-library') _
+            
+            pipeline {
+                agent any
+            
+                stages{
+            
+                    stage('Test shared Lib'){
+            
+                        steps{
+            
+                            deployapp(
+                                app_name: 'Empower',
+                                app_version: '2.0',
+                                env: 'stage'
+                            )
+                        }
+                    }
+                    stage('Test cases') {
+            
+                        steps{
+            
+                             runTests(
+                                app_name: 'Nugenesis',
+                                test_type: ' '
+            
+                             )
+            
+                        }
+                    
+                    }
+            
+                }
+                
+            }
