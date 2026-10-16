@@ -18,14 +18,13 @@ pipeline {
         }
 
     }
-    stages{
-        stage('Test Unit test') {
-            steps{
-                runTests(
-                    app_name: "Nugenesis",
-                    testType: ""
-                )
-            }
+    stage('Test cases') {
+        step{
+            runTests(
+                app_name: 'Nugenesis'
+                testType: ''
+            )
         }
+        
     }
 }
