@@ -22,7 +22,7 @@ pipeline {
         step{
             runTests(
                 app_name: 'Nugenesis'
-                testType: ''
+                test_type: ''
             )
         }
         
