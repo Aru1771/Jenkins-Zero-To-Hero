@@ -16,15 +16,18 @@ pipeline {
                 )
             }
         }
+        stage('Test cases') {
+
+            steps {
+
+                 runTests(
+                    app_name: 'Nugenesis',
+                    test_type: ' '                  
+                )
+            }
+        
+        }
 
     }
-    stage('Test cases') {
-        step{
-            runTests(
-                app_name: 'Nugenesis',
-                test_type: ' '
-            )
-        }
-        
-    }
+    
 }
