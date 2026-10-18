@@ -2,6 +2,36 @@
 
         matrix is used when you want to run the same set of stages/steps across multiple combinations of values.
 
+* Imagine you have an application called Empower. You need to test it on:
+        
+        - Two Java versions: Java 17 and Java 21
+        - Two environments: Dev and Stage
+* Without a matrix, you might write four separate Jenkins stages or jobs.
+* With a matrix, you define the combinations once, and Jenkins runs a separate execution for each combination.
+
+Think of a matrix like an Excel table:
+
+<img width="748" height="162" alt="image" src="https://github.com/user-attachments/assets/bd619247-679c-4406-a431-383a82578b13" />
+
+*  gives you four combinations.
+
+* The memory trick: Matrix = Dimensions × Combinations × Repeated execution.
+        
+          Dimensions are the things you want to vary, such as Java version or environment.
+          Values are the choices within each dimension.
+          Combinations are the executions Jenkins creates from those choices.
+
+<img width="962" height="551" alt="image" src="https://github.com/user-attachments/assets/13c91232-8e2e-4ad4-871d-04be6d89ab5b" />
+
+
+ * One important detail: JAVA_VERSION and ENVIRONMENT become environment variables within each matrix execution. You can reference them as ${JAVA_VERSION} and ${ENVIRONMENT} in a Groovy double-quoted string.
+
+<img width="931" height="481" alt="image" src="https://github.com/user-attachments/assets/612001d1-14c2-4e30-8f2e-dc643bd0b63a" />
+
+* If you had three axes with 2, 2, and 3 values, Jenkins would generate \(2 \times 2 \times 3 = 12\) combinations, unless you excluded combinations.
+
+* Important: Jenkins can execute matrix combinations in parallel when its execution capacity and configuration permit it. Matrix does not guarantee that all combinations run simultaneously.
+  
 Think of it like a testing grid.
 
 For example, suppose you want to test Empower in:
