@@ -9,7 +9,7 @@ pipeline {
             steps{
                 buildApp(
                     appName: 'Lims',
-                    version: "2.1"
+                    version: 
                 )
             }
         }
