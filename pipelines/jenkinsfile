@@ -5,6 +5,15 @@ pipeline {
 
     stages{
 
+        stage('build') {
+            steps{
+                buildApp(
+                    appName: 'Lims',
+                    version: "2.1"
+                )
+            }
+        }
+
         stage('Test shared Lib'){
 
             steps{
