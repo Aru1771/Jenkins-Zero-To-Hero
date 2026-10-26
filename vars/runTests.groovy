@@ -6,6 +6,10 @@ def call(Map test) {
         error 'Application name is required'
     }
 
+    if (test_type) {
+        error 'Tets type is required'
+    }
+
     echo "Application is testing: ${app_name}"
     echo "test type is: ${test_type}"
 }
