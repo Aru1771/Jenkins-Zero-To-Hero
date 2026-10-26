@@ -18,10 +18,10 @@ pipeline {
 
             steps{
 
-                deployapp(
+                buildApp(
                     app_name: 'Empower',
                     app_version: '2.0',
-                    env: 'stage'
+                    environment: 'stage'
                 )
             }
         }
