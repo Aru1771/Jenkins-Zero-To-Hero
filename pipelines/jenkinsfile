@@ -5,14 +5,14 @@ pipeline {
 
     parameters{
         string(
-            name: 'App_Version'
-            defaultValue: '1.0'
+            name: 'App_Version',
+            defaultValue: '1.0',
             description: 'version of the application'
         )
 
         choice(
-            name: 'Deployment_Environment'
-            choices: ['Production', 'Stage', 'Development']
+            name: 'Deployment_Environment',
+            choices: ['Production', 'Stage', 'Development'],
             description: 'Deployment environment of the application'
         )
     }
