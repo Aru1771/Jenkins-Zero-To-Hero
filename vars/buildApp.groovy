@@ -1,3 +1,5 @@
+import com.company.utils
+
 def call(Map config) {
     def appName = config.app_name?. toString()?.trim()
     def version = config.app_version?. toString()?. trim()
@@ -14,10 +16,10 @@ def call(Map config) {
         error "Environment is required"
     }
 
-
-    echo "application: ${appName}"
-    echo "version: ${version}"
-    echo "Environment ${environment}"
+    def appInfo = utils.getAppInfo(appName, version, environment)
+      
+    echo "Application Info: ${appInfo}"
+  
 
 }
 
