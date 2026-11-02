@@ -16,7 +16,7 @@ def call(Map config) {
         error "Environment is required"
     }
 
-    def appInfo = utils.getAppInfo(appName, version, environment)
+    def appInfo = Utils.getAppInfo(appName, version, environment)
       
     echo "Application Info: ${appInfo}"
   
