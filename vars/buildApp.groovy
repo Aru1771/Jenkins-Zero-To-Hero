@@ -1,4 +1,4 @@
-import com.company.utils
+import com.company.Utils
 
 def call(Map config) {
     def appName = config.app_name?. toString()?.trim()
