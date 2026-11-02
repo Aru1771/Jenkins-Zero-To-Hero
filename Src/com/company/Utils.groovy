@@ -6,3 +6,4 @@ class Utils {
         return "Application: ${appName}, Version: ${version}, Environment: ${environment}"
     }
 }
+
