@@ -45,12 +45,16 @@ src/com/company/Utils.groovy
         }
     }
 
+<img width="762" height="400" alt="image" src="https://github.com/user-attachments/assets/d9f5fe9f-e714-450b-aee9-4027dca96519" />
+
 Here:
 
     - package defines the class package.
     - class Utils defines a reusable Groovy class.
     - static allows you to call the method without creating an object.
     - getAppInfo() returns a string.
+
+
 
 Use this class inside vars/
 ---------------------------
