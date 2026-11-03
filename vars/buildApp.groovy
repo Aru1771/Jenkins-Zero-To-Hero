@@ -1,4 +1,4 @@
-import com.company.Utils
+import com.company.dockerImageUtils
 
 def call(Map config) {
     def appName = config.app_name?. toString()?.trim()

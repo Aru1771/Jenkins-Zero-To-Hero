@@ -1,3 +1,5 @@
+import com.company.dockerImageUtils
+
 def call(Map test) {
     def app_name = test.app_name?.toString()?.trim()
     def app_version = test.app_version?.toString()?.trim() ?: '1.0'
