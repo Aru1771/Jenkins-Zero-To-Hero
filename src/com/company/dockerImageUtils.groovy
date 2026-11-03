@@ -2,7 +2,7 @@ package com.company
 
 class dockerImageUtils {
 
-    static String dockerImageName(string appName, string version) {
+    static String dockerImageName(String appName, String version) {
         return "${appName.toLowerCase()}:${version}"
 
     }
