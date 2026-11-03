@@ -14,7 +14,7 @@ def call(Map config) {
 
    
 
-    def imageName = com.company.dockerImageUtils.dockerImageName(appName, version)
+    def imageName = dockerImageUtils.dockerImageName(appName, version)
 
     echo "Docker Image Name: ${imageName}"
   

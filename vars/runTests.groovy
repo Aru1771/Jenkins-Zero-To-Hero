@@ -12,7 +12,7 @@ def call(Map test) {
         error 'Tets type is required'
     }
 
-    def imageName = com.company.dockerImageUtils.dockerImageName(app_name, app_version)
+    def imageName = dockerImageUtils.dockerImageName(app_name, app_version)
 
     echo "Docker Image Name: ${imageName}"
 
