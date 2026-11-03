@@ -1,6 +1,6 @@
 def call(Map test) {
     def app_name = test.app_name?.toString()?.trim()
-    def test_type = test.test_type?.toString()?.trim() ?: 'SQ'
+    def app_version = test.app_version?.toString()?.trim() ?: '1.0'
 
     if (!app_name) {
         error 'Application name is required'
@@ -10,7 +10,10 @@ def call(Map test) {
         error 'Tets type is required'
     }
 
-    echo "Application is testing: ${app_name}"
-    echo "test type is: ${test_type}"
+    def imageName = com.company.dockerImageUtils.dockerImageName(app_name, app_version)
+
+    echo "Docker Image Name: ${imageName}"
+
+    
 }
 

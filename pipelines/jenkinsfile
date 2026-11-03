@@ -9,12 +9,6 @@ pipeline {
             defaultValue: '1.0',
             description: 'version of the application'
         )
-
-        choice(
-            name: 'Deployment_Environment',
-            choices: ['Production', 'Stage', 'Development'],
-            description: 'Deployment environment of the application'
-        )
     }
 
     stages{
@@ -27,7 +21,6 @@ pipeline {
                 buildApp(
                     app_name: 'Empower',
                     app_version: params.App_Version,
-                    environment: params.Deployment_Environment
                 )
             }
         }
@@ -37,7 +30,7 @@ pipeline {
 
                  runTests(
                     app_name: 'Nugenesis',
-                    test_type: ' '
+                    app_version: '2.0'
 
                  )
 

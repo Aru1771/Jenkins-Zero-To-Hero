@@ -3,7 +3,7 @@ import com.company.Utils
 def call(Map config) {
     def appName = config.app_name?. toString()?.trim()
     def version = config.app_version?. toString()?. trim()
-    def environment = config.environment?. toString()?. trim()
+    
 
     if (!appName) {
         error "Application should not be blank"
@@ -12,13 +12,11 @@ def call(Map config) {
         error "App Version required"
     }
 
-    if (!environment) {
-        error "Environment is required"
-    }
+   
 
-    def appInfo = Utils.getAppInfo(appName, version, environment)
-      
-    echo "Application Info: ${appInfo}"
+    def imageName = com.company.dockerImageUtils.dockerImageName(appName, version)
+
+    echo "Docker Image Name: ${imageName}"
   
 
 }
