@@ -8,7 +8,7 @@ def call(Map test) {
         error 'Application name is required'
     }
 
-    if (!test_type) {
+    if (!app_version) {
         error 'Tets type is required'
     }
 
