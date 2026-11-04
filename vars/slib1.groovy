@@ -1,7 +1,7 @@
 def call(Map config) {
 
     def app_name = config.app_name?. toString() ?.trim()
-    def app_version = config.app_version ?. to String() ?. trim()
+    def app_version = config.app_version ?. toString() ?. trim()
     def environment = config.environment ?. toString() ?. trim()
 
     if (!app_name) {
