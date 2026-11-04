@@ -18,25 +18,17 @@ pipeline {
 
             steps{
 
-                buildApp(
-                    app_name: 'Empower',
+                slib1(
+                    
+                    app_name: 'my-app',
                     app_version: params.App_Version,
+                    environment: 'dev'
                 )
+
+                
             }
         }
-        stage('Test cases') {
 
-            steps{
-
-                 runTests(
-                    app_name: 'Nugenesis',
-                    app_version: '2.0'
-
-                 )
-
-            }
-        
-        }
 
     }
     
