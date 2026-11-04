@@ -134,3 +134,69 @@ The docker agent configuration is now successful.
 
 
 
+Phase 1 — Advanced Pipeline Syntax
+Completed
+
+Topics:
+1. Parameters and Environment
+2. when conditions
+3. input and timeout
+4. retry and post
+5. Parallel stages
+6. Matrix builds
+7. Complete advanced Jenkinsfile
+
+Phase 2 — Shared Libraries
+Completed
+
+Topics:
+1. Shared Library fundamentals and setup
+2. Default values and input validation
+3. Multiple reusable functions
+4. Reusability and reducing duplication
+5. Passing configuration using Map config
+6. Jenkins parameters integration
+7. src/ directory and Groovy classes
+8. Advanced design and best practices
+
+Phase 3 — Multibranch Pipelines + Webhooks
+
+Topics:
+1. Multibranch Pipeline fundamentals
+2. Branch discovery and indexing
+3. Branch-specific Jenkinsfile execution
+4. GitHub/Git webhooks
+5. Pull request pipeline integration
+
+Phase 4 — Kubernetes Dynamic Agents
+
+Topics:
+1. Jenkins agents and distributed builds
+2. Kubernetes plugin architecture
+3. Jenkins controller and Kubernetes agent communication
+4. Pod templates
+5. Dynamic agent creation and deletion
+6. Multi-container agents
+7. Running pipelines on Kubernetes agents
+
+Phase 5 — Credentials & Security
+
+Topics:
+1. Jenkins Credentials Store
+2. Username/password, secret text and SSH credentials
+3. Using credentials in Jenkinsfiles
+4. Credentials binding and masking
+5. Role-Based Access Control (RBAC)
+6. Securing Jenkins pipelines
+
+Phase 6 — Advanced Pipeline Integration
+
+Topics:
+1. Jenkins + Terraform integration
+2. Jenkins + Docker integration
+3. Jenkins + Kubernetes integration
+4. Infrastructure provisioning through pipelines
+5. Application deployment through pipelines
+6. Complete end-to-end CI/CD pipeline
+7. Production-style pipeline design
+
