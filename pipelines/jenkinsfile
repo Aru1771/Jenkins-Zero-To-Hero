@@ -20,12 +20,22 @@ pipeline {
 
                 slib1(
                     
-                    app_name: 'my-app',
+                    app_name: 'Empower',
                     app_version: params.App_Version,
                     environment: 'dev'
                 )
 
                 
+            }
+        }
+
+        stage('Nugenesis') {
+            steps {
+                slib1(
+                    app_name: 'Nugenesis',
+                    app_version: params.App_Version,
+                    environment: 'prod'
+                )
             }
         }
 
