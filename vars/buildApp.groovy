@@ -1,23 +1,16 @@
-import com.company.dockerImageUtils
-
 def call(Map config) {
-    def appName = config.app_name?. toString()?.trim()
-    def version = config.app_version?. toString()?. trim()
     
+    def app_name = config.app_name ?. toString() ?. trim() 
+    def version = config.version ?. toString() ?. trim() ?: '1.0'
+    def environment = config.environment ?. toString() ?. trim()
 
-    if (!appName) {
-        error "Application should not be blank"
+    if (!app_name) {
+        error ('Name should not be blank')
     }
-    if (!version){
-        error "App Version required"
+
+    if (!environment) {
+        error ('environment should not be Blank')
     }
 
-   
-
-    def imageName = dockerImageUtils.dockerImageName(appName, version)
-
-    echo "Docker Image Name: ${imageName}"
-  
-
+    echo "${app_name} version ${version} is deployed in ${environment}"
 }
-
