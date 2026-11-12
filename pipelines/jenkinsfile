@@ -18,12 +18,10 @@ pipeline {
 
             steps{
 
-                buildApp(
-                    
-                    app_name: 'Empower',
-                    version: params.App_Version,
-                    environment: 'Prod'
-                )
+               deployapp(
+                app_name: "Empower",
+                test_type: "integration"
+               )
 
                 
             }
@@ -31,10 +29,9 @@ pipeline {
 
         stage('Nugenesis') {
             steps {
-                buildApp(
-                    app_name: 'Nugenesis',
-                    version: params.App_Version,
-                    environment: 'dev'
+                deployapp(
+                    app_name: "Nugenesis",
+                    test_type: "unit"
                 )
             }
         }

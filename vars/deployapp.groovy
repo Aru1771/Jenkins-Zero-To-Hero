@@ -1,17 +1,15 @@
 def call(Map config) {
 
-    if (!config.app_name?.toString()?.trim()) {
-        error("Application Name is required")
+    def app_name = config.app_name ?. toString() ?. trim() 
+    def test_type = config.test_type ?. toString() ?. trim() ?: "unit"
+
+    if (!app_name) {
+        error ("Name is required")
     }
 
-  
-
-    def app_name = config.app_name?.toString()?.trim() 
-    def app_version = config.app_version ?.toString() ?.trim() ?: '1.0.0'
-    def env = config.env
+    echo "${app_name} is running the ${test_type}"
+    
 
 
-    echo "Application Name is ${app_name}"
-    echo "Application Version is ${app_version}"
-    echo "Environment is ${env}"
+
 }
