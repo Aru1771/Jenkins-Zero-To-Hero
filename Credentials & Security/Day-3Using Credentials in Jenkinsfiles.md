@@ -131,3 +131,65 @@ Also:
               }
           }
       }
+
+
+
+
+<img width="993" height="552" alt="image" src="https://github.com/user-attachments/assets/bc6cf9e8-1563-40e1-9825-8fa04b04ef17" />
+
+
+
+
+            pipeline {
+                agent any
+                
+                stages {
+                    stage('Git_Cred') {
+                        steps{
+                            withCredentials([
+                                string(
+                                    credentialsId: 'github-token',
+                                    variable: 'GITHUB_TOKEN'
+                                    )
+                                ])
+                                {
+                                    bat '''
+                                    if not "%GITHUB_TOKEN%"=="" (
+                                        echo GitHub token is available
+                                    ) else (
+                                        echo GitHub token is missing
+                                        exit /b 1
+                                    )
+                                '''
+                                }
+                        }
+                    }
+                    stage('Docker-hub') {
+                        steps{
+                            withCredentials([
+                                usernamePassword(
+                                    credentialsId: 'dockerhub-credentials',
+                                    usernameVariable: 'DOCKER_USER',
+                                    passwordVariable: 'DOCKER_PASS'
+                                    )
+                                ])
+                                {
+                                    echo "Docker user name: ${DOCKER_USER}"
+                                }
+                                
+                        }
+                    }
+                    stage('SSH-login'){
+                        steps{
+                            sshagent(credentials: ['ec2-ssh-key']){
+                                
+                                bat '''
+                            ssh -o StrictHostKeyChecking=yes ^
+                                ec2-user@172.31.32.87 ^
+                                "hostname"
+                        '''
+                            }
+                        }
+                    }
+                }
+            }
