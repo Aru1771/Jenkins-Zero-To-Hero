@@ -133,3 +133,71 @@ This is preferable to exposing the token to every stage.
 
 <img width="975" height="822" alt="image" src="https://github.com/user-attachments/assets/9a4561ff-ae8a-429d-96e3-9e48d1ad0af6" />
 
+        pipeline {
+            agent any
+            
+            stages {
+                stage('Git_Cred') {
+                    steps{
+                        withCredentials([
+                            string(
+                                credentialsId: 'github-token',
+                                variable: 'GITHUB_TOKEN'
+                                )
+                            ])
+                            {
+                                bat '''
+                                if not "%GITHUB_TOKEN%"=="" (
+                                    echo GitHub token is available
+                                ) else (
+                                    echo GitHub token is missing
+                                    exit /b 1
+                                )
+                            '''
+                            }
+                    }
+                }
+                stage('Docker-hub') {
+                    steps{
+                        withCredentials([
+                            usernamePassword(
+                                credentialsId: 'dockerhub-credentials',
+                                usernameVariable: 'DOCKER_USER',
+                                passwordVariable: 'DOCKER_PASS'
+                                )
+                            ])
+                            {
+                                bat '''
+                                
+                                echo "Docker user name: ${DOCKER_USER}"
+                                
+                                if not "%DOCKER_PASS%"=="" (
+                                echo Docker password is available
+                                ) else (
+                                echo Docker Password is missing
+                                    exit /b 1
+                                )
+                                
+                                '''
+                                
+                                
+                                
+                            }
+                            
+                    }
+                }
+                stage('SSH-login'){
+                    steps{
+                        sshagent(credentials: ['ec2-ssh-key']){
+                            
+                            bat '''
+                        ssh -o BatchMode=yes ^
+                    -o StrictHostKeyChecking=no ^
+                    ec2-user@54.242.235.151 ^
+                    "hostname"
+                    '''
+                        }
+                    }
+                }
+            }
+        }
