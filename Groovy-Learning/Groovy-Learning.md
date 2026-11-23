@@ -1,3 +1,5 @@
+Practice playground: https://onecompiler.com/groovy?utm_source=chatgpt.com
+
 Day 1:
 ======
 
