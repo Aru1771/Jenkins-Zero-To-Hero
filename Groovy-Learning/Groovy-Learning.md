@@ -50,3 +50,88 @@ What is script {}?
         - def – declares a Groovy variable.
         - environment – defines environment variables for Jenkins pipeline execution.
         - env.APP_NAME – accesses a Jenkins environment variable from Groovy code.
+
+
+Day-3:
+======
+
+Today we'll learn three important Groovy data structures:
+1. List – Store multiple values.
+2. Map – Store ddef services = ['user-service', 'payment-service', 'order-service']
+
+services.each { service ->
+    echo "Building ${service}"
+}ata as key-value pairs.
+3. Set – Store unique values without duplicates.
+
+List:
+
+Remember: Groovy Lists use zero-based indexing.
+
+    def services = ['user-service', 'payment-service', 'order-service']
+
+    println services[0]
+    println services[1]
+    println services[2]
+
+
+def services = ['user-service', 'payment-service', 'order-service']
+
+services.each { service ->
+    echo "Building ${service}"
+}
+
+    each iterates through every List element.
+    service represents the current element.
+    separates the closure parameter from its body.
+    echo is a Jenkins Pipeline step.
+
+Important: each {} is a Groovy collection operation. echo is supplied by Jenkins Pipeline.
+
+<img width="1002" height="743" alt="image" src="https://github.com/user-attachments/assets/8486d404-3c66-4002-8614-d47d8482dd39" />
+
+<img width="982" height="851" alt="image" src="https://github.com/user-attachments/assets/69a46ec7-f91f-429c-b9cd-e4f91eb3444d" />
+
+<img width="983" height="887" alt="image" src="https://github.com/user-attachments/assets/d9e707eb-406b-4efe-af4f-4b6a8c8a5edd" />
+
+This is called a nested Map: a Map containing other Maps.
+
+This pattern is especially useful when building reusable deployment functions in vars/deployApp.groovy.
+
+<img width="996" height="767" alt="image" src="https://github.com/user-attachments/assets/30f0272f-241e-41f7-b9ed-bd176a8d61df" />
+
+<img width="883" height="505" alt="image" src="https://github.com/user-attachments/assets/29c3e813-b644-48b4-9cdd-4587a6134133" />
+
+5. Combining List and Map in a Jenkins pipeline
+Now let's put everything together.
+
+Imagine an enterprise CI pipeline that builds three microservices. Each service has its own version and Docker image name.
+
+        pipeline {
+            agent any
+        
+            stages {
+                stage('Build Microservices') {
+                    steps {
+                        script {
+                            def services = [
+                                [name: 'user-service', version: '1.0'],
+                                [name: 'payment-service', version: '2.0'],
+                                [name: 'order-service', version: '1.5']
+                            ]
+        
+                            services.each { service ->
+        
+                                def imageName =
+                                    "${service.name}:${service.version}"
+        
+                                echo "Building ${service.name}"
+                                echo "Docker Image: ${imageName}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+<img width="971" height="650" alt="image" src="https://github.com/user-attachments/assets/87b22301-bf5e-4697-b29f-fc9587ce8719" />
